@@ -4,3 +4,387 @@
 @media(max-width:900px){.app-shell{grid-template-columns:190px minmax(0,1fr)}.sidebar{padding-inline:10px}.main{padding:24px 20px 40px}.grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.app-shell{display:block}.sidebar{display:none}.main{padding:20px 14px 95px}.topbar{margin-bottom:20px}.topbar h1{font-size:24px}.avatar{width:36px;height:36px}.grid.two,.grid.three{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.panel{padding:15px;border-radius:15px}.hero{padding:19px}.balance{font-size:32px}.stat-number{font-size:18px}.stat-card{padding:13px}.stat-icon{margin-bottom:10px}.actions{gap:8px}.actions button{flex:1;padding:11px 8px}.mobile-nav{display:flex;position:fixed;z-index:20;bottom:0;left:0;right:0;padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:#071226ed;border-top:1px solid #203452;backdrop-filter:blur(16px);justify-content:space-around}.mobile-nav .nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 8px;border:0;border-radius:9px;font-size:10px}.mobile-nav .nav-btn span{font-size:19px}.mobile-nav .nav-btn small{font-size:9px}.mobile-nav .nav-btn.active{background:transparent}.section-head h2{font-size:15px}.operation{gap:9px}.op-icon{width:34px;height:34px;flex-basis:34px}.amount{font-size:11px}.op-main b{font-size:12px}.op-main small{font-size:10px}.modal form{padding:18px}.goal-card{padding:13px}.footer-note{margin-bottom:5px}}
 @media(max-width:380px){.grid.two,.grid.three{grid-template-columns:1fr}.stat-number{font-size:22px}}
+
+/* FinBuddy — mobile-first polish */
+:root {
+  --bg: #101112;
+  --panel: #191a1c;
+  --panel2: #202123;
+  --panel3: #292a2c;
+  --line: #323336;
+  --text: #f0f0f0;
+  --muted: #999b9f;
+  --pink: #b6b6b6;
+  --pink2: #dedede;
+  --blue: #b8bbc0;
+  --green: #b6c7bb;
+  --red: #c3aeb4;
+  --shadow: 0 8px 24px #00000020;
+}
+
+@media (max-width: 650px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    min-height: 100%;
+    background: var(--bg);
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--bg);
+    font-size: 14px;
+    overscroll-behavior-y: contain;
+  }
+
+  .app-shell {
+    display: block;
+    width: 100%;
+    min-height: 100dvh;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 0;
+    padding: 18px 14px calc(100px + env(safe-area-inset-bottom));
+  }
+
+  .topbar {
+    margin-bottom: 18px;
+  }
+
+  .topbar h1 {
+    font-size: 23px;
+    letter-spacing: -0.6px;
+  }
+
+  /* Cards use the full width on phones */
+  .grid,
+  .grid.two,
+  .grid.three {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .panel,
+  .hero,
+  .advice-hero {
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: var(--panel);
+    box-shadow: none;
+  }
+
+  .hero {
+    background: linear-gradient(145deg, #202123, #171819);
+  }
+
+  .balance {
+    font-size: clamp(29px, 8vw, 37px);
+    overflow-wrap: anywhere;
+  }
+
+  .stat-card {
+    min-width: 0;
+    padding: 15px;
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+
+  .stat-number {
+    font-size: clamp(19px, 5vw, 25px);
+    overflow-wrap: anywhere;
+  }
+
+  .stat-icon,
+  .stat-icon.pink,
+  .stat-icon.green,
+  .stat-icon.orange {
+    background: #303134;
+    color: #d0d0d0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .actions > button {
+    flex: 1;
+    min-width: 0;
+    min-height: 46px;
+    padding: 12px 8px;
+  }
+
+  button,
+  input,
+  select {
+    touch-action: manipulation;
+  }
+
+  .primary,
+  .secondary,
+  .outline,
+  .danger-btn {
+    min-height: 44px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .primary {
+    color: #111;
+    background: #dedede;
+    border-color: #dedede;
+  }
+
+  .outline {
+    color: #e0e0e0;
+    border-color: #55565a;
+    background: transparent;
+  }
+
+  .secondary {
+    background: #292a2c;
+    border-color: #393a3d;
+  }
+
+  .section-head {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-head h2,
+  .panel h2 {
+    font-size: 16px;
+  }
+
+  .section-head > button {
+    flex-shrink: 0;
+  }
+
+  .operation {
+    gap: 9px;
+    padding: 13px 0;
+  }
+
+  .op-main {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .op-main b,
+  .op-main small {
+    overflow-wrap: anywhere;
+  }
+
+  .amount {
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  .small-btn {
+    flex-shrink: 0;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .filter-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .field,
+  .filter-row select {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .segmented {
+    gap: 3px;
+  }
+
+  .segment {
+    min-height: 40px;
+    padding: 9px 4px;
+    font-size: 12px;
+  }
+
+  .goal-card,
+  .debt-card {
+    min-width: 0;
+    background: var(--panel2);
+    border-color: var(--line);
+  }
+
+  .goal-meta,
+  .bar-head {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .chart-box {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .chart {
+    width: 100%;
+  }
+
+  .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 2px;
+    padding: 7px 4px calc(7px + env(safe-area-inset-bottom));
+    background: #171819f5;
+    border-top: 1px solid #333437;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .mobile-nav .nav-btn {
+    flex: 1;
+    min-width: 0;
+    min-height: 51px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 2px;
+    color: #999b9f;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+  }
+
+  .mobile-nav .nav-btn span {
+    width: auto;
+    font-size: 19px;
+    line-height: 1.1;
+  }
+
+  .mobile-nav .nav-btn small {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .mobile-nav .nav-btn.active {
+    color: #f1f1f1;
+    background: #292a2c;
+  }
+
+  .mobile-nav .nav-btn.active span {
+    color: #f1f1f1;
+  }
+
+  .modal {
+    width: calc(100% - 24px);
+    max-width: 480px;
+    max-height: 85dvh;
+    overflow-y: auto;
+    border-radius: 20px;
+    background: #1b1c1e;
+  }
+
+  .modal form {
+    padding: 18px;
+  }
+
+  .modal input,
+  .modal select {
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+  .toast {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    width: max-content;
+    max-width: calc(100% - 32px);
+    text-align: center;
+  }
+
+  .footer-note {
+    margin-top: 20px;
+  }
+}
+
+/* Smooth, subtle interactions */
+@media (prefers-reduced-motion: no-preference) {
+  button,
+  .panel,
+  .stat-card,
+  .goal-card,
+  .debt-card {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease,
+      opacity 180ms ease;
+  }
+
+  button:active {
+    transform: scale(0.97);
+  }
+
+  #content > * {
+    animation: finbuddy-enter 240ms ease both;
+  }
+
+  .progress-fill,
+  .bar-fill {
+    transition: width 450ms ease;
+  }
+
+  .modal[open] {
+    animation: finbuddy-modal 200ms ease both;
+  }
+
+  .chart-point {
+    cursor: pointer;
+    transition: r 150ms ease;
+  }
+
+  .chart-point:hover,
+  .chart-point:focus {
+    r: 7;
+  }
+}
+
+@keyframes finbuddy-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes finbuddy-modal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
