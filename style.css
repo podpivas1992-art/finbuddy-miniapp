@@ -388,3 +388,90 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* FinBuddy — smooth mobile animations */
+
+:root {
+  --motion-fast: 180ms;
+  --motion-normal: 320ms;
+  --motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  overscroll-behavior-y: contain;
+}
+
+button,
+.nav-btn,
+.panel,
+.stat-card,
+.card,
+input,
+select,
+textarea {
+  transition:
+    background-color var(--motion-normal) ease,
+    border-color var(--motion-normal) ease,
+    color var(--motion-normal) ease,
+    box-shadow var(--motion-normal) ease,
+    transform var(--motion-fast) var(--motion-smooth),
+    opacity var(--motion-normal) ease;
+}
+
+button:active,
+.nav-btn:active {
+  transform: scale(0.97);
+}
+
+.panel,
+.stat-card,
+.card {
+  animation: finbuddy-card-in 500ms var(--motion-smooth) both;
+}
+
+@keyframes finbuddy-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav {
+  animation: finbuddy-nav-in 450ms var(--motion-smooth) both;
+}
+
+@keyframes finbuddy-nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button,
+.nav-btn {
+  touch-action: manipulation;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
