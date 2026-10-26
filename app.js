@@ -1,8 +1,17 @@
 (() => {
   "use strict";
   const $ = id => document.getElementById(id);
-  const tg = window.Telegram?.WebApp;
-  tg?.ready(); tg?.expand();
+ const tg = window.Telegram?.WebApp;
+
+if (tg) {
+  tg.ready();
+  tg.expand();
+
+  try {
+    tg.setHeaderColor("#101112");
+    tg.setBackgroundColor("#101112");
+  } catch (e) {}
+}
 
   const STORE_KEY = "finbuddy_full_demo_v2";
   const today = () => new Date().toISOString().slice(0,10);
