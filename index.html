@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071226">
+  <title>FinBuddy — Твои финансы</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" data-page="home"><span class="brand-mark">₽</span><span><b>FinBuddy</b><small>Твои финансы</small></span></a>
+      <nav class="side-nav">
+        <button class="nav-btn active" data-page="home"><span>⌂</span>Главная</button>
+        <button class="nav-btn" data-page="operations"><span>↔</span>Операции</button>
+        <button class="nav-btn" data-page="reports"><span>⌁</span>Статистика</button>
+        <button class="nav-btn" data-page="goals"><span>◎</span>Цели и накопления</button>
+        <button class="nav-btn" data-page="debts"><span>⇄</span>Долги</button>
+        <button class="nav-btn" data-page="advice"><span>✦</span>Финансовый совет</button>
+        <button class="nav-btn" data-page="settings"><span>⚙</span>Настройки</button>
+      </nav>
+      <div class="sidebar-foot">FinBuddy · Твои деньги. Твои правила.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">ЛИЧНЫЕ ФИНАНСЫ</p><h1 id="page-title">Главная</h1></div>
+        <button class="avatar" data-page="settings" title="Настройки">FB</button>
+      </header>
+      <div id="content" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <nav class="mobile-nav">
+    <button class="nav-btn active" data-page="home"><span>⌂</span><small>Главная</small></button>
+    <button class="nav-btn" data-page="operations"><span>↔</span><small>Операции</small></button>
+    <button class="nav-btn" data-page="reports"><span>⌁</span><small>Статистика</small></button>
+    <button class="nav-btn" data-page="goals"><span>◎</span><small>Цели</small></button>
+    <button class="nav-btn" data-page="more"><span>•••</span><small>Ещё</small></button>
+  </nav>
+
+  <dialog id="operation-dialog" class="modal">
+    <form id="operation-form">
+      <div class="modal-head"><div><p class="eyebrow">НОВАЯ ЗАПИСЬ</p><h2 id="operation-title">Добавить операцию</h2></div><button type="button" class="icon-btn" data-close="operation-dialog">×</button></div>
+      <div class="segmented"><button type="button" class="segment active" data-kind="expense">Расход</button><button type="button" class="segment" data-kind="income">Доход</button></div>
+      <label>Сумма, ₽<input id="op-amount" type="number" min="1" step="0.01" placeholder="Например, 1500" required></label>
+      <label>Категория<select id="op-category" required></select></label>
+      <label>Описание <span class="muted">(необязательно)</span><input id="op-note" maxlength="100" placeholder="Например, продукты"></label>
+      <label>Дата<input id="op-date" type="date" required></label>
+      <div class="form-error" id="op-error"></div>
+      <button class="primary full" type="submit">Сохранить операцию</button>
+    </form>
+  </dialog>
+
+  <dialog id="goal-dialog" class="modal">
+    <form id="goal-form">
+      <div class="modal-head"><div><p class="eyebrow">ПЛАН НА БУДУЩЕЕ</p><h2>Новая цель</h2></div><button type="button" class="icon-btn" data-close="goal-dialog">×</button></div>
+      <label>Название цели<input id="goal-name" maxlength="60" placeholder="Например, новый телефон" required></label>
+      <label>Нужная сумма, ₽<input id="goal-target" type="number" min="1" placeholder="50000" required></label>
+      <label>Уже накоплено, ₽<input id="goal-saved" type="number" min="0" value="0" required></label>
+      <button class="primary full" type="submit">Создать цель</button>
+    </form>
+  </dialog>
+
+  <dialog id="debt-dialog" class="modal">
+    <form id="debt-form">
+      <div class="modal-head"><div><p class="eyebrow">УЧЁТ ДОЛГОВ</p><h2>Добавить долг</h2></div><button type="button" class="icon-btn" data-close="debt-dialog">×</button></div>
+      <div class="segmented"><button type="button" class="segment active" data-debt-kind="owed">Мне должны</button><button type="button" class="segment" data-debt-kind="owe">Я должен</button></div>
+      <label>Кому / от кого<input id="debt-person" maxlength="60" placeholder="Имя" required></label>
+      <label>Сумма, ₽<input id="debt-amount" type="number" min="1" placeholder="5000" required></label>
+      <label>Описание<input id="debt-note" maxlength="100" placeholder="Например, до зарплаты"></label>
+      <label>Дата возврата<input id="debt-date" type="date"></label>
+      <button class="primary full" type="submit">Сохранить долг</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
