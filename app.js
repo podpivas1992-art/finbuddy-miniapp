@@ -149,7 +149,17 @@ function reports(){
     $("page-title").textContent=pageTitles[page]||"FinBuddy";
     document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page||(page==="advice"&&b.dataset.page==="more")));
     const views={home,operations,reports,goals,debts,advice,settings};
-    $("content").innerHTML=(views[page]||home)()+`<p class="footer-note">FinBuddy · Твои деньги. Твои правила.</p>`;
+    const content = $("content");
+content.classList.remove("screen-enter");
+content.classList.add("screen-exit");
+
+setTimeout(() => {
+  content.innerHTML = (views[page]||home)() +
+    `<p class="footer-note">FinBuddy · Твои деньги. Твои правила.</p>`;
+
+  content.classList.remove("screen-exit");
+  content.classList.add("screen-enter");
+}, 120);
 
     document.querySelectorAll("[data-chart-point]").forEach(point=>{
       const showValue=()=>{
